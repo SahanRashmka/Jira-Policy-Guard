@@ -1,6 +1,6 @@
 # Known limitations and risk register
 
-This document distinguishes platform facts from design assumptions. Nothing listed as planned is implemented yet.
+This document distinguishes platform facts from design assumptions.
 
 ## Confirmed Forge/Jira constraints
 
@@ -18,7 +18,7 @@ This document distinguishes platform facts from design assumptions. Nothing list
 
 ## MVP product limitations
 
-- Phase 1 is administration/storage for required-field policies only; it does not enforce workflow transitions.
+- Required-field enforcement is implemented only after an administrator manually adds the Jira Policy Guard validator to a company-managed workflow transition.
 - Initial enforcement targets company-managed projects pending PoC. Team-managed support is not promised.
 - Only transitions to which an administrator attaches the Forge validator are enforced.
 - Policies govern a single Jira site. There is no cross-site synchronization or Atlassian-organization scope.
@@ -29,7 +29,8 @@ This document distinguishes platform facts from design assumptions. Nothing list
 - The validator error surface may not show every violation cleanly. Results will be bounded, with full detail available in issue context/audit where authorized.
 - Audits are app records, not Jira’s native immutable audit log. Retention and export are not defined yet.
 - Large imports cannot be assumed atomic because transaction batches are bounded.
-- No SLA, high-availability guarantee, offline enforcement, or enforcement when Forge/Jira is unavailable is defined until failure semantics are approved.
+- Unexpected storage, Jira API, payload, or evaluation errors fail closed: the transition is blocked with a generic retry/contact-administrator message. Stack traces and issue field values are not returned to users. This favors policy integrity over transition availability.
+- The current lambda payload documents destination status IDs but not transition IDs. For the MVP, `Policy.transitionIds` stores destination status IDs and applicability means “transitioning into this status.”
 
 ## Proofs of concept required
 

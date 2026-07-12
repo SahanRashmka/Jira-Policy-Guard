@@ -1,4 +1,11 @@
 modules:
+  jira:workflowValidator:
+    - key: policy-guard-required-field-validator
+      name: Jira Policy Guard
+      description: Enforces enabled Jira Policy Guard required-field policies.
+      function: workflow-validator
+      projectTypes:
+        - company-managed
   jira:projectSettingsPage:
     - key: policy-guard-project-settings
       resource: policy-guard-ui
@@ -8,6 +15,8 @@ modules:
   function:
     - key: resolver
       handler: src/presentation/resolvers/index.handler
+    - key: workflow-validator
+      handler: src/presentation/validators/index.validate
 
 resources:
   - key: policy-guard-ui
