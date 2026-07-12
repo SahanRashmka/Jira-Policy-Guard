@@ -1,0 +1,43 @@
+{
+  "name": "jira-policy-guard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Policy evaluation foundation for Jira Policy Guard",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "npm run build:ui && npm run typecheck",
+    "build:ui": "vite build --config static/policy-guard-ui/vite.config.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@forge/api": "8.0.1",
+    "@forge/bridge": "6.1.0",
+    "@forge/kvs": "2.0.1",
+    "@forge/resolver": "2.0.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.1.1",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitest/coverage-v8": "4.1.10",
+    "@vitejs/plugin-react": "6.0.1",
+    "eslint": "10.7.0",
+    "prettier": "3.9.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.63.0",
+    "vite": "8.0.0",
+    "vitest": "4.1.10"
+  }
+}

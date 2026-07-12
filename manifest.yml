@@ -1,0 +1,33 @@
+modules:
+  jira:workflowValidator:
+    - key: policy-guard-required-field-validator
+      name: Jira Policy Guard
+      description: Enforces enabled Jira Policy Guard required-field policies.
+      function: workflow-validator
+      projectTypes:
+        - company-managed
+  jira:projectSettingsPage:
+    - key: policy-guard-project-settings
+      resource: policy-guard-ui
+      resolver:
+        function: resolver
+      title: Jira Policy Guard
+  function:
+    - key: resolver
+      handler: src/presentation/resolvers/index.handler
+    - key: workflow-validator
+      handler: src/presentation/validators/index.validate
+
+resources:
+  - key: policy-guard-ui
+    path: static/policy-guard-ui/dist
+
+permissions:
+  scopes:
+    - storage:app
+    - read:jira-work
+
+app:
+  id: ari:cloud:ecosystem::app/6d7d8d99-7f86-4299-ace2-4d34d7ccc83e
+  runtime:
+    name: nodejs22.x
