@@ -11,6 +11,17 @@ permissions:
     - read:jira-work
 ```
 
+## Implemented project-administration flow
+
+The project settings flow currently declares only:
+
+- `storage:app` for persisted policy records through `@forge/kvs`.
+- `read:jira-work` for the Jira current-user permission check and future issue metadata reads.
+
+The browser never supplies the authoritative project ID. The resolver reads `context.extension.project.id` from Forge's secure invocation context and then calls `GET /rest/api/3/mypermissions` as the current user for `ADMINISTER_PROJECTS`. Create and list operations both require this check, including direct resolver calls. The project settings page's visibility is defense in depth rather than the authorization boundary.
+
+No write scope, user/group scope, configuration-management scope, external egress, or offline impersonation is currently declared. Workflow enforcement is not implemented.
+
 | Scope                       | Status                         | Why needed                                                                                                                                                                                                                                                                         | Not authorized by this scope alone                                                          |
 | --------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | `storage:app`               | **Confirmed, Phase 1**         | Required by `@forge/kvs` for KVS and Custom Entity persistence ([reference](https://developer.atlassian.com/platform/forge/storage-reference/entities/)).                                                                                                                          | A user’s right to read or modify a particular policy.                                       |

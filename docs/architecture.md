@@ -173,7 +173,9 @@ There are no project versions to preserve. Registry lookups on 2026-07-12 return
 | TypeScript         |            7.0.2 | **PoC required:** do not adopt automatically; use the latest stable version supported by the generated Forge/tooling baseline. |
 | Vitest             |           4.1.10 | Proposed test runner; verify Node 24 and coverage tooling compatibility.                                                       |
 
-Commit the root lockfile. The current `.gitignore` excludes `package-lock.json`; Phase 1 should deliberately change that because reproducible commercial builds matter more than the inherited ignore rule.
+The root lockfile is committed; the inherited `package-lock.json` ignore rule was removed because reproducible commercial builds matter.
+
+The implemented TypeScript configuration uses `skipLibCheck: true` only because the current `@forge/api` 8.0.1 declaration files conflict with TypeScript 6 strict optional-property checking and depend on browser globals. All application and test source remains included in strict type checking; no source error suppression is used.
 
 ## Execution paths
 
