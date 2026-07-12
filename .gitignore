@@ -12,9 +12,10 @@ PRODUCT_SPEC.md
 node_tmp/
 node_modules/
 npm-debug.log.*
+coverage/
+static/policy-guard-ui/dist/
 /.awcache/*
 /.cache-loader/*
-package-lock.json
 
 ######################
 # SASS
