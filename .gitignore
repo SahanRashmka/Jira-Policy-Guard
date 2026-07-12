@@ -4,6 +4,7 @@
 /target/www/**
 /src/test/javascript/coverage/
 PRODUCT_SPEC.md
+docs/
 
 ######################
 # Node
