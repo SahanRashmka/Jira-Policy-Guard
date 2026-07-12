@@ -4,7 +4,6 @@
 /target/www/**
 /src/test/javascript/coverage/
 PRODUCT_SPEC.md
-docs/
 
 ######################
 # Node
@@ -13,9 +12,9 @@ docs/
 node_tmp/
 node_modules/
 npm-debug.log.*
+coverage/
 /.awcache/*
 /.cache-loader/*
-package-lock.json
 
 ######################
 # SASS
